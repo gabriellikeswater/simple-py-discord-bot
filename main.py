@@ -1,5 +1,6 @@
 import discord
 from discord.ext import commands
+import youtube_dl
 
 # Replace 'YOUR_TOKEN_HERE' with your bot's token
 client = commands.Bot(command_prefix='!', intents=discord.Intents.all())
@@ -16,8 +17,45 @@ async def ping(ctx):
 async def hi(ctx):
     await ctx.send('hello, {user}!')
 
+
+
 @client.command()
-async def cmds(ctx):
-    await ctx.send('Here are the available commands: !ping, !hi')
+async def play(ctx, url: str):
+    voice_channel = ctx.author.voice.channel
+    if voice_channel is None:
+        await ctx.send("You must be in a voice channel to play music!")
+        return
+    vc = await voice_channel.connect()
+    ydl_opts = {
+        'format': 'bestaudio/best',
+        'outtmpl': '%(extractor)s-%(id)s-%(title)s.%(ext)s',
+        'restrictfilenames': True,
+        'noplaylist': True,
+        'nocheckcertificate': True,
+        'ignoreerrors': False,
+        'logtostderr': False,
+        'quiet': False,
+        'no_warnings': True,
+        'default_search': 'auto',
+        'source_address': '0.0.0.0'
+    }
+    with youtube_dl.YoutubeDL(ydl_opts) as ydl:
+        info = ydl.extract_info(url, download=False)
+        URL = info['formats'][0]['url']
+        player = await vc.play(URL)
+        await ctx.send(f"Music playing: {info['title']}")
+
+@client.command()
+async def stop(ctx):
+    voice_client = ctx.message.guild.voice_client
+    if voice_client.is_playing():
+        voice_client.stop()
+
+@client.command()
+async def disconnect(ctx):
+    voice_client = ctx.message.guild.voice_client
+    if voice_client.is_connected():
+        await voice_client.disconnect()
+        await ctx.send("Bot disconnected from voice channel.")
 
 client.run('MTA0NjE5NTczOTUzMDkwNzc0OA.Ga3f6b.FhghK2YYi_Z63wEDXtTFE1IPAiNG4ynpTkDySg')
