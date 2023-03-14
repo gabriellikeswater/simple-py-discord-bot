@@ -58,4 +58,4 @@ async def disconnect(ctx):
         await voice_client.disconnect()
         await ctx.send("Bot disconnected from voice channel.")
 
-client.run('MTA0NjE5NTczOTUzMDkwNzc0OA.Ga3f6b.FhghK2YYi_Z63wEDXtTFE1IPAiNG4ynpTkDySg')
+client.run('MTA0NjE5NTczOTUzMDkwNzc0OA.GlJjo2.tYsg8ukwy-PW14wca5QrcSC2DJPwQ_MP-oGLso')
