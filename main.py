@@ -2,7 +2,7 @@ import discord
 from discord.ext import commands
 import youtube_dl
 
-# Replace 'YOUR_TOKEN_HERE' with your bot's token
+# Replace "!" with your prefered prefix
 client = commands.Bot(command_prefix='!', intents=discord.Intents.all())
 
 @client.event
@@ -58,4 +58,5 @@ async def disconnect(ctx):
         await voice_client.disconnect()
         await ctx.send("Bot disconnected from voice channel.")
 
-client.run('MTA0NjE5NTczOTUzMDkwNzc0OA.GlJjo2.tYsg8ukwy-PW14wca5QrcSC2DJPwQ_MP-oGLso')
+# Replace "YOUR-BOT-TOKEN-GOES-HERE" with your bot's token - Keep the ''''''''s, ok?
+client.run('YOUR-BOT-TOKEN-GOES-HERE')
