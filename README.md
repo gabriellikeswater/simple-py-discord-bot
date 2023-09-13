@@ -1,4 +1,4 @@
-# oats1-bot-OFFICIAL
+# simple discord bot in py
  
  This is my discord bot made with python.
 
