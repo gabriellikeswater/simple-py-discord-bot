@@ -1,3 +1,5 @@
+# Know that if you want any of this to work you need to install these packages(is it called packages lol?).
+# To do that you need to go to the terminal/command line and write "pip install (package-name-here)".
 import discord
 from discord.ext import commands
 import youtube_dl
