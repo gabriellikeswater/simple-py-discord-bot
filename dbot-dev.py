@@ -6,11 +6,21 @@ import youtube_dl
 
 
 # Replace "!" with your prefered prefix
-client = commands.Bot(command_prefix='!', intents=discord.Intents.all())
+client = commands.Bot(command_prefix='!', help_command=None, intents=discord.Intents.all())
 
 @client.event
 async def on_ready():
     print('Logged in as {0.user}'.format(client))
+
+@client.command()
+async def help(ctx):
+    embed = discord.Embed(title="-HELP-", description="HERE ARE ALL MY COMMANDS!", colour=discord.Color.purple())
+    embed.add_field(name= "!help", value="shows this message", inline=False)
+    embed.add_field(name= "!ping", value="shows latency", inline=False)
+    embed.add_field(name= "!hi", value="you'll see :)", inline=False)
+    embed.add_field(name= "!mc", value="If you didn't know, I am compatible with the MineCordBot Minecraft server plugin.", inline=False)
+
+    await ctx.send(embed=embed)
 
 @client.command()
 async def ping(ctx):
@@ -25,7 +35,7 @@ async def hi(ctx):
 
 @client.command()
 async def mc(ctx):
-    await ctx.send('Utiliza "!!help" para veres os commandos de minecraft.')
+    await ctx.send('Use " !!help " to see the commands for Minecraft.')
 
 
 
