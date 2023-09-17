@@ -1,8 +1,9 @@
-# Know that if you want any of this to work you need to install these packages(is it called packages lol?).
-# To do that you need to go to the terminal/command line and write "pip install (package-name-here)".
+# Know that if you want any of this to work you need to install these modules.
+# To do that you need to go to the terminal/command line and write "pip install (module-name-here)".
 import discord
 from discord.ext import commands
 import youtube_dl
+
 
 # Replace "!" with your prefered prefix
 client = commands.Bot(command_prefix='!', intents=discord.Intents.all())
@@ -17,7 +18,14 @@ async def ping(ctx):
 
 @client.command()
 async def hi(ctx):
-    await ctx.send('hello, {user}!')
+    username = ctx.author.name
+    displayname = ctx.author.display_name
+    await ctx.send('Hello, ' + displayname + ' !')
+    # GREAT PYTHON TIP TO REMEMBER: display_name (display name) and name (username)
+
+@client.command()
+async def mc(ctx):
+    await ctx.send('Utiliza "!!help" para veres os commandos de minecraft.')
 
 
 
